@@ -1,5 +1,6 @@
 var request = require('request');
 var token = require('./secrets').GITHUB_TOKEN;
+var fs = require('fs');
 
 console.log('---------------------------------------');
 console.log('Welcome to the Github Avatar Downloader');
@@ -26,7 +27,17 @@ function callback(err, result){
   var obj = JSON.parse(result);
     obj.forEach(function (i) {
     console.log(i.avatar_url);
+    var contributors = i.avatar_url;
+    downloadImageByURL(contributors, 'avatars/' + i.login + '.jpg');
   });
+}
+
+function downloadImageByURL(url, filePath) {
+  request.get(url)
+  .on('error', function(err) {
+    throw err;
+  })
+  .pipe(fs.createWriteStream(filePath));
 }
 
 getRepoContributors("jquery", "jquery", callback);
