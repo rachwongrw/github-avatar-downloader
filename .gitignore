@@ -1,3 +1,6 @@
+# Personal Access Token
+secrets.js
+
 # Logs
 logs
 *.log
@@ -74,3 +77,6 @@ typings/
 
 # FuseBox cache
 .fusebox/
+
+# Personal Access Tokens
+11acdc1e837fdc35bdb8ee6a141be2ef242a1333
