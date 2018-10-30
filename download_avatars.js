@@ -26,8 +26,8 @@ function callback(err, result){
   }
   var array = JSON.parse(result); //make the string into an array/object
   array.forEach(function (obj) {
-    var contributors = obj.avatar_url;
-    downloadImageByURL(contributors, 'avatars/' + obj.login + '.jpg'); //contributors is the url now and everything after the ',' is the filePath, concatenated
+    var avatarURL = obj.avatar_url;
+    downloadImageByURL(avatarURL, 'avatars/' + obj.login + '.jpg'); //avatarURL is the url now and everything after the ',' is the filePath, concatenated
   });
 }
 
