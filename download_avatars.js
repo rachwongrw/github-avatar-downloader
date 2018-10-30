@@ -9,7 +9,11 @@ console.log('Welcome to the Github Avatar Downloader');
 console.log('---------------------------------------');
 
 function getRepoContributors(repoOwner, repoName, cb) {
-  var options = {
+    if (repoOwner === undefined || repoName === undefined) {
+      throw new Error("Please enter repoOwner and repoName");
+    }
+
+    var options = {
     url: "https://api.github.com/repos/" + repoOwner + "/" + repoName + "/contributors",
     headers: {
       'User-Agent': 'request',
