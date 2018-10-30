@@ -15,8 +15,8 @@ function getRepoContributors(repoOwner, repoName, cb) {
     }
   };
 
-  request(options, function(err, res, body) {
-    cb(err, body);
+  request(options, function(err, response, body) {
+    cb(err, body); //this calls the callback function. err = err, body = result
   });
 }
 
@@ -24,11 +24,10 @@ function callback(err, result){
   if (err) {
     console.log("Errors:", err);
   }
-  var obj = JSON.parse(result);
-    obj.forEach(function (i) {
-    console.log(i.avatar_url);
-    var contributors = i.avatar_url;
-    downloadImageByURL(contributors, 'avatars/' + i.login + '.jpg');
+  var array = JSON.parse(result); //make the string into an array/object
+  array.forEach(function (obj) {
+    var contributors = obj.avatar_url;
+    downloadImageByURL(contributors, 'avatars/' + obj.login + '.jpg'); //contributors is the url now and everything after the ',' is the filePath, concatenated
   });
 }
 
